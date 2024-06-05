@@ -1,0 +1,9 @@
+{
+    "queryStringParameters": {
+      "url": "https://example.com",
+      "type": "png",
+      "width": "1920",
+      "height": "1080",
+      "fullpage": "true"
+    }
+  }
