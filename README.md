@@ -1,5 +1,5 @@
 
-# Screenshot Capture Service
+# screenshuttle
 
 This project provides a service to capture screenshots or PDFs of web pages using AWS Lambda and Puppeteer. The service can be configured to capture specific elements, hide certain elements, and set custom dimensions and formats for the output.
 
