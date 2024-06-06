@@ -10,8 +10,8 @@
   "author": "khushbu_jajal <khushbu@visualead.com>",
   "license": "ISC",
   "dependencies": {
-    "chrome-aws-lambda": "^10.1.0",
-    "puppeteer-core": "^10.1.0",
+    "@sparticuz/chromium": "^123.0.1",
+    "puppeteer-core": "^22.10.0",
     "serverless": "^4.0.35"
   },
   "repository": "https://github.com/qrstuff/screenshuttle.git"

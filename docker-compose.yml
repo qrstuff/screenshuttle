@@ -4,7 +4,4 @@ services:
   screenshuttle:
     build: .
     ports:
-      - "9092:8082"  # Expose the port that Lambda emulator will use
-    environment:
-      - AWS_LAMBDA_FUNCTION_HANDLER=handler.capture
-      - AWS_LAMBDA_RUNTIME_API=127.0.0.1:8082
+      - "9090:8080"

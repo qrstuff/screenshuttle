@@ -17,64 +17,55 @@ This project provides a service to capture screenshots or PDFs of web pages usin
 ### Prerequisites
 
 - Node.js and npm/yarn installed
-- Serverless Framework installed globally (`npm install -g serverless`)
 
 ### Installation
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/screenshot-capture
-   cd screenshot-capture
+   git clone https://github.com/qrstuff/screenshuttle/
+   cd screenshuttle
    ```
 
 2. Install dependencies:
    ```bash
    yarn install
    ```
-
-### Configuration
-
-The configuration for the service is defined in the `serverless.yml` file. The Lambda function is configured to run on AWS, with Puppeteer set up to work in a Lambda environment using `serverless-plugin-chrome`.
-
-### Deployment
-
-1. Deploy the service using Serverless Framework:
-   ```bash
-   serverless deploy
-   ```
-
-2. Note the endpoint URL provided after deployment.
-
 ## Usage
+
+  ```bash
+  docker build -t screenshuttle .
+
+  docker run -it --rm -p 9090:8080 screenshuttle
+  ```
+  Create event.json in main folder with sample data:
+  ```
+  {
+    "queryStringParameters": {
+      "url": "https://example.com",
+      "type": "png",
+      "width": "1920",
+      "height": "1080",
+      "fullpage": "true"
+    }
+  }
+  ```
+
+  ```
+  curl -XPOST "http://localhost:9090/2015-03-31/functions/function/invocations" -d @event.json
+  ```
 
 ### API Endpoint
 
 The service exposes an HTTP GET endpoint at the deployed URL. The following query parameters can be used:
 
 - `url` (required): The URL of the web page to capture.
-- `type` (optional): The type of output file. Options are `png`, `jpeg`, and `pdf`. Default is `png`.
+- `format` (optional): The format of output file. Options are `png`, `jpeg`, and `pdf`. Default is `png`.
 - `selector` (optional): CSS selector of the element to capture.
-- `hideSelector` (optional): CSS selector of elements to hide before capturing.
+- `exclude` (optional): CSS selector of elements to hide before capturing.
 - `width` (optional): Width of the viewport in pixels. Default is 1920.
 - `height` (optional): Height of the viewport in pixels. Default is 1080.
 - `fullpage` (optional): Capture the full page (`true`) or only the visible part (`false`). Default is `false`.
 
-### Examples
-
-- Capture a full-page PNG screenshot:
-  ```
-  https://<your-api-id>.execute-api.<your-region>.amazonaws.com/dev/capture?url=https://example.com&type=png&fullpage=true
-  ```
-
-- Capture a screenshot of a specific element:
-  ```
-  https://<your-api-id>.execute-api.<your-region>.amazonaws.com/dev/capture?url=https://example.com&type=png&selector=.specific-element
-  ```
-
-- Capture a screenshot hiding specific elements:
-  ```
-  https://<your-api-id>.execute-api.<your-region>.amazonaws.com/dev/capture?url=https://example.com&type=png&hideSelector=.ads
-  ```
 
 ## Project Structure
 
