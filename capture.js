@@ -1,15 +1,15 @@
 const chromium = require("@sparticuz/chromium");
 const puppeteer = require("puppeteer-core");
 
-async function capture(
+async function capture({
   url,
-  format,
-  selector,
   exclude,
+  format,
+  fullpage,
+  selector,
   width,
   height,
-  fullpage,
-) {
+}) {
   let browser = null;
 
   try {
@@ -22,16 +22,20 @@ async function capture(
 
     const page = await browser.newPage();
 
-    // Set the viewport size
     await page.setViewport({ width, height });
+    await page.goto(url, { waitUntil: "networkidle0" });
 
-    await page.goto(url);
+    if (selector) {
+      await page.waitForSelector(selector);
+    }
 
-    if (exclude) {
-      await page.evaluate((exclude) => {
-        const elements = document.querySelectorAll(exclude);
-        elements.forEach((element) => {
-          element.style.visibility = "hidden";
+    if (exclude?.length) {
+      await page.evaluate((selectors) => {
+        selectors.forEach((selector) => {
+          const element = document.querySelector(selector);
+          if (element) {
+            element.style.visibility = "hidden";
+          }
         });
       }, exclude);
     }
@@ -44,30 +48,27 @@ async function capture(
       });
     } else {
       const options = {
-        //options
         type: format,
-        fullPage: fullpage === "true" || false,
+        fullPage: fullpage || false,
       };
 
       if (format === "jpeg") {
-        options.quality = 80; // Set quality for JPEG
+        options.quality = 80;
       }
 
       if (selector) {
         const element = await page.$(selector);
-        if (element) {
-          buffer = await element.screenshot(options);
-        } else {
-          throw new Error(`Element with selector "${selector}" not found`);
+        if (!element) {
+          throw new Error(`Element ${selector} could not be found.`);
         }
+
+        buffer = await element.screenshot(options);
       } else {
         buffer = await page.screenshot(options);
       }
     }
 
     return buffer;
-  } catch (error) {
-    throw error; // Re-throw the error after logging it
   } finally {
     await browser?.close();
   }
