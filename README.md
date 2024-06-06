@@ -67,13 +67,6 @@ The service exposes an HTTP GET endpoint at the deployed URL. The following quer
 - `fullpage` (optional): Capture the full page (`true`) or only the visible part (`false`). Default is `false`.
 
 
-## Project Structure
-
-- `capture.js`: Contains the logic to capture screenshots or PDFs using Puppeteer.
-- `handler.js`: Lambda function handler that processes the HTTP requests and captures the content.
-- `serverless.yml`: Serverless Framework configuration file.
-- `package.json` and `yarn.lock`: Project dependencies.
-
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
