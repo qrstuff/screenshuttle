@@ -1,0 +1,18 @@
+{
+  "name": "screenshuttle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Khushbu Jajal <khushbu@visualead.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@sparticuz/chromium": "^123.0.1",
+    "puppeteer-core": "^22.10.0",
+    "serverless": "^4.0.35"
+  },
+  "repository": "https://github.com/qrstuff/screenshuttle.git"
+}
