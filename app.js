@@ -11,15 +11,15 @@ const createErrorResponse = (statusCode, error) => ({
 });
 
 const handler = async (event) => {
-  const url = event.url;
+  const { body } = event;
+  const { url, selector } = body;
 
-  const exclude = event.exclude || [];
-  const format = event.format || OUTPUT_FORMATS[0];
-  const fullpage = !!event.fullpage;
-  const selector = event.selector;
+  const exclude = body.exclude || [];
+  const format = body.format || OUTPUT_FORMATS[0];
+  const fullpage = !!body.fullpage;
 
-  const width = parseInt(event.width || 1920);
-  const height = parseInt(event.height || 1080);
+  const width = parseInt(body.width || 1920);
+  const height = parseInt(body.height || 1080);
 
   if (!url) {
     return createErrorResponse(422, "URL field is required");
