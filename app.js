@@ -11,13 +11,12 @@ const createErrorResponse = (statusCode, error) => ({
 });
 
 const handler = async (event) => {
-  const body = event.body;
-  const url = body.url;
+  const { body } = event;
+  const { url, selector } = body;
 
   const exclude = body.exclude || [];
   const format = body.format || OUTPUT_FORMATS[0];
   const fullpage = !!body.fullpage;
-  const selector = body.selector;
 
   const width = parseInt(body.width || 1920);
   const height = parseInt(body.height || 1080);
