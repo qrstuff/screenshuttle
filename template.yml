@@ -13,7 +13,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       MemorySize: 128
-      Timeout: 3
+      Timeout: 150
       Architectures:
         - x86_64
       EphemeralStorage:
@@ -37,9 +37,4 @@ Resources:
               Resource: !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:repository/${ProjectName}"
       SnapStart:
         ApplyOn: None
-      Events:
-        Api1:
-          Type: Api
-          Properties:
-            Path: /screenshuttle
-            Method: POST
+
