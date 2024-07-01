@@ -42,3 +42,9 @@ Resources:
       SnapStart:
         ApplyOn: None
 
+Outputs:
+  FunctionName:
+    Description: Function name for
+    Value: !Ref ScreenshuttleLambda
+    Export:
+      Name: !Join ["-", [!Ref ProjectName, function]]
