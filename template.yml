@@ -7,6 +7,10 @@ Parameters:
     Type: String
     Description: Project/ecr repositroy name.
     Default: screenshuttle
+  ImageTag:
+    Type: String
+    Description: Image tag for the image to be deployed. Keep this as commit id to ensure cfn records the change during deployment
+    Default: commit-id-here
 
 Resources:
   ScreenshuttleLambda:
@@ -21,7 +25,7 @@ Resources:
       EventInvokeConfig:
         MaximumEventAgeInSeconds: 21600
         MaximumRetryAttempts: 2
-      ImageUri: !Sub "${AWS::AccountId}.dkr.ecr.eu-west-1.amazonaws.com/${ProjectName}:main"
+      ImageUri: !Sub "${AWS::AccountId}.dkr.ecr.eu-west-1.amazonaws.com/${ProjectName}:${ImageTag}"
       PackageType: Image
       Policies:
         - Statement:

@@ -1,8 +1,0 @@
-version: 0.2
-
-phases:
-  build:
-    commands:
-      - echo Deploy Latest Image to Lambda
-      - FUNCTION_NAME=`aws lambda list-functions --query 'Functions[?starts_with(FunctionName, `screenshuttle`)].FunctionName' --output text`
-      - aws lambda update-function-code --function-name $FUNCTION_NAME  --image-uri $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG_BRANCH
