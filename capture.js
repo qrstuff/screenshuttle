@@ -14,7 +14,7 @@ async function capture({
 
   try {
     browser = await puppeteer.launch({
-      args: ['--no-sandbox', '--headless', '--disable-gpu', '--disable-dev-shm-usage'],
+      args: ['--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage'],
       defaultViewport: chromium.defaultViewport,
       executablePath: await chromium.executablePath(),
       headless: chromium.headless,
