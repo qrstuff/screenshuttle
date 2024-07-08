@@ -64,7 +64,7 @@ const handler = async (event) => {
     };
   } catch (err) {
     return createErrorResponse(
-      422,
+      500,
       err.message || "Error encountered while capturing screenshot.",
     );
   }
