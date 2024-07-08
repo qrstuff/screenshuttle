@@ -11,7 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "@sparticuz/chromium": "^123.0.1",
-    "puppeteer-core": "^22.10.0",
+    "puppeteer-core": "^22.6.4",
     "serverless": "^4.0.35"
   },
   "repository": "https://github.com/qrstuff/screenshuttle.git"
